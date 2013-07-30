@@ -210,7 +210,7 @@ public class FrmAlumnoPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 51, 102));
         jLabel1.setText("ALTA Y BAJA DE ALUMNOS");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrador\\Downloads\\test.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/test.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 102));
