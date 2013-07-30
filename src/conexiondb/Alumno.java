@@ -156,21 +156,7 @@ public class Alumno extends Persona {
     
     @Override
       public void actualizar() {
-        Conexion con=new Conexion();         
-        con.conectate();        
-        Connection conx=con.getConn();
         
-        try
-        {
-                Statement st = conx.createStatement();                
-                String sql="update alumno set nombre='"+nombre+"', apellido_paterno='"+apellidoPaterno+"' where id="+this.getId();
-            
-                conx.close();
-        }catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-            
-        }
              
         }  
     //fin del update

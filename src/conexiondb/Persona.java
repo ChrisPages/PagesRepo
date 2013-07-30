@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Persona {
 
   public String nombre;
- public String apellidoPaterno;
+  public String apellidoPaterno;
   private String apellidoMaterno;
   private String fechaNacimiento;
   private String direccion;
