@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class Docente extends Persona{
      private String GradoEstudio;
+     private String Cedula;
 
 public Docente()
     
@@ -44,6 +45,7 @@ public Docente()
                     this.setApellidoMaterno(res.getString("apellido_materno"));
                     this.setDireccion(res.getString("direccion"));
                     this.GradoEstudio=res.getString("GradoEstudio");
+                    this.Cedula=res.getString("Cedula");
                     this.setFechaNacimiento(res.getString("fecha_nacimiento"));         
 
                }
@@ -55,13 +57,14 @@ public Docente()
           
     }
     
-    public Docente(String GradoEstudio,String nombre,String apellidoPaterno,String apellidoMaterno,String fechaNacimiento,String direccion)
+    public Docente(String GradoEstudio,String Cedula,String nombre,String apellidoPaterno,String apellidoMaterno,String fechaNacimiento,String direccion)
     {
         this.setNombre(nombre);
         this.setApellidoPaterno(apellidoPaterno);
         this.setApellidoMaterno(apellidoMaterno);
         this.setDireccion(direccion);
         this.GradoEstudio=GradoEstudio;
+        this.Cedula=Cedula;
         this.setFechaNacimiento(fechaNacimiento.toString());  
         
     }
@@ -72,6 +75,19 @@ public Docente()
    
     public void setGradoEstudio(String GradoEstudio) {
         this.GradoEstudio = GradoEstudio;
+    }
+    /**
+     * @return the Cedula
+     */
+    public String getCedula() {
+        return Cedula;
+    }
+
+    /**
+     * @param Cedula the Cedula to set
+     */
+    public void setCedula(String Cedula) {
+        this.Cedula = Cedula;
     }
     
     @Override
@@ -187,4 +203,4 @@ public Docente()
         
     }
 
-}
+  }
