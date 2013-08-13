@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class Persona {
 
-  public String nombre;
-  public String apellidoPaterno;
+  private String nombre;
+  private String apellidoPaterno;
   private String apellidoMaterno;
   private String fechaNacimiento;
   private String direccion;

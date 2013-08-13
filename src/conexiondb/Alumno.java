@@ -36,11 +36,11 @@ public class Alumno extends Persona {
 
                     this.setId(res.getInt("idAlumno"));
                     this.setNombre(res.getString("nombre"));
-                    this.setApellidoPaterno(res.getString("apellido_paterno"));
-                    this.setApellidoMaterno(res.getString("apellido_materno"));
-                    this.setDireccion(res.getString("direccion"));
+                    this.setApellidoPaterno(res.getString("ApellidoPaterno"));
+                    this.setApellidoMaterno(res.getString("ApellidoMaterno"));
+                    this.setDireccion(res.getString("Direccion"));
                     this.matricula=res.getString("matricula");
-                    this.setFechaNacimiento(res.getString("fecha_nacimiento"));         
+                    this.setFechaNacimiento(res.getString("Fechanacimiento"));         
 
                }
           conx.close();
@@ -51,14 +51,14 @@ public class Alumno extends Persona {
           
     }
     
-    public Alumno(String matricula,String nombre,String apellidoPaterno,String apellidoMaterno,String fechaNacimiento,String direccion)
+    public Alumno(String matricula,String nombre,String apellidoPaterno,String apellidoMaterno,String fechanacimiento,String direccion)
     {
+        this.matricula=matricula;
         this.setNombre(nombre);
         this.setApellidoPaterno(apellidoPaterno);
         this.setApellidoMaterno(apellidoMaterno);
         this.setDireccion(direccion);
-        this.matricula=matricula;
-        this.setFechaNacimiento(fechaNacimiento.toString());  
+        this.setFechaNacimiento(fechanacimiento.toString());  
         
     }
       
@@ -127,10 +127,10 @@ public class Alumno extends Persona {
         
         if(valor.equals(""))
         {
-            sql="SELECT * FROM alumno";
+            sql="SELECT * FROM Alumno";
         }else{
       
-             sql="SELECT * FROM alumno WHERE matricula like '%"+valor+"%'";
+             sql="SELECT * FROM Alumno WHERE matricula like '%"+valor+"%'";
         }    
         System.out.println(sql);
         
@@ -154,11 +154,52 @@ public class Alumno extends Persona {
      }
     //inicio de update
     
-    @Override
-      public void actualizar() {
+      public int actualiza() {
+        int retorno=0;
+        Conexion con=new Conexion();         
+        con.conectate();        
+        Connection conx=con.getConn();
+            
+        try
+        {
+            
+             System.out.println(this.getId());
+                Statement st = conx.createStatement();
+                
+                String sqlInsert="UPDATE Alumno SET matricula=?,nombre=?,ApellidoPaterno=?,ApellidoMaterno=?,Fechanacimiento=?,Direccion=? WHERE idAlumno="+String.valueOf(this.getId());
+                PreparedStatement pstmt=conx.prepareStatement(sqlInsert,PreparedStatement.RETURN_GENERATED_KEYS);
+                
+                             
+                pstmt.setString(1, this.matricula);
+                pstmt.setString(2, this.getNombre());
+                pstmt.setString(3, this.getApellidoPaterno());
+                pstmt.setString(4, this.getApellidoMaterno());
+                pstmt.setString(5, this.getFechaNacimiento());
+                pstmt.setString(6, this.getDireccion());
+                pstmt.executeUpdate(); 
+                
+                ResultSet rs = pstmt.getGeneratedKeys();
+                if (rs != null && rs.next()) {
+                     this.setId( rs.getInt(1));
+                }
+                else
+                {
+                    retorno=-1;
+                }
+               
+                
+                conx.close();
+        }catch(Exception e)
+        {
+            System.out.println("Actualizar Error");
+            System.out.println(e.getMessage());
+            retorno=-1;
+        }
         
+        return retorno;
+    }
              
-        }  
+        
     //fin del update
     
     

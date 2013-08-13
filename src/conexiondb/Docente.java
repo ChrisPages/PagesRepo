@@ -101,14 +101,15 @@ public Docente()
         try
         {
                 Statement st = conx.createStatement();
-                String sqlInsert="INSERT INTO Profersor VALUES (default,?,?,?,?,?,?);";
+                String sqlInsert="INSERT INTO Profesor VALUES (default,?,?,?,?,?,?);";
                 PreparedStatement pstmt=conx.prepareStatement(sqlInsert,PreparedStatement.RETURN_GENERATED_KEYS);
-                pstmt.setString(1, this.GradoEstudio);
-                pstmt.setString(2, this.getNombre());
-                pstmt.setString(3, this.getApellidoPaterno());
-                pstmt.setString(4, this.getApellidoMaterno());
-                pstmt.setString(5, this.getFechaNacimiento());
-                pstmt.setString(6, this.getDireccion());
+                
+                pstmt.setString(1, this.getNombre());
+                pstmt.setString(2, this.getApellidoPaterno());
+                pstmt.setString(3, this.getApellidoMaterno());
+                pstmt.setString(4, this.getFechaNacimiento());
+                pstmt.setString(5, this.getDireccion());
+                pstmt.setString(7, this.Cedula);
                 int n=pstmt.executeUpdate();
                 
                 if(n>0){
@@ -174,9 +175,52 @@ public Docente()
      }
     //inicio de update
     
-    @Override
-      public void actualizar() {
+ 
+      public int actualiza() {
+        int retorno=0;
+        Conexion con=new Conexion();         
+        con.conectate();        
+        Connection conx=con.getConn();
+            
+        try
+        {
+            
+             System.out.println(this.getId());
+                Statement st = conx.createStatement();
+                
+                String sqlInsert="UPDATE Profesor SET nombre=?,apellidoPat=?,apellidoMat=?,fechaNac=?,direccion=?,cedula=?,carrera=? WHERE idalumno="+String.valueOf(this.getId());
+                PreparedStatement pstmt=conx.prepareStatement(sqlInsert,PreparedStatement.RETURN_GENERATED_KEYS);
+                
+                
+                pstmt.setString(1, this.getNombre());
+                pstmt.setString(2, this.getApellidoPaterno());
+                pstmt.setString(3, this.getApellidoMaterno());
+                pstmt.setString(4, this.getFechaNacimiento());
+                pstmt.setString(5, this.getDireccion());
+                pstmt.setString(6, this.getCedula());
+                
+                
+                pstmt.executeUpdate(); 
+                
+                ResultSet rs = pstmt.getGeneratedKeys();
+                if (rs != null && rs.next()) {
+                     this.setId( rs.getInt(1));
+                }
+                else
+                {
+                    retorno=-1;
+                }
+               
+                
+                conx.close();
+        }catch(Exception e)
+        {
+            System.out.println("Actualizar Error");
+            System.out.println(e.getMessage());
+            retorno=-1;
+        }
         
+        return retorno;
              
         }  
     //fin del update

@@ -98,6 +98,11 @@ public class FrmAlumnoPrincipal extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -176,7 +181,6 @@ public class FrmAlumnoPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(aux);
 
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrador\\Downloads\\buscar.png")); // NOI18N
         jButton7.setText("Buscar");
         jButton7.setBorderPainted(false);
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -273,9 +277,6 @@ public class FrmAlumnoPrincipal extends javax.swing.JFrame {
       alumnoa.instanceFrmPrincipal=this;
       alumnoa.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
-    
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) { 
-   }                                     
 
     
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -297,10 +298,7 @@ public class FrmAlumnoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    FrmAlumnoModificar alumnob=new FrmAlumnoModificar();
-       alumnob.instanceFrmPrincipal=this;
-       alumnob.setVisible(true);
-    
+ 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -331,6 +329,14 @@ public class FrmAlumnoPrincipal extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+          System.out.println("idd"+idselect);
+        FrmAlumnoModificar frmAct=new FrmAlumnoModificar(idselect);
+        frmAct.instanceFrmPrincipal=this;
+        
+        frmAct.setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command  arguments
